@@ -124,6 +124,7 @@ const displayFavorites = function(moviesArray) {
 
 const movieSubmissions = function () {
     const favoriteMovies = trackFavorites();
+    
     displayFavorites(favoriteMovies);
 }
 
