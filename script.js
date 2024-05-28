@@ -1,6 +1,9 @@
 const APIURL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=37dc8fe3863669edc2545c1d7ad8f68f&page=1";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCHAPI ="https://api.themoviedb.org/3/movie?&api_key=37dc8fe3863669edc2545c1d7ad8f68f&query=";
+const addFavoritesButton = document.getElementById('favorites-button');
+const favoriteMovies = []
+
 
 // initially get fav movies
 getMovies(APIURL);
@@ -64,3 +67,65 @@ form.addEventListener("submit", (e) => {
         search.value = "";
     }
 });
+
+
+// Enable users to add their favorites to be tracked to a table
+
+const trackFavorites = function () {
+    let addAnother = true;
+    while (addAnother) {
+        let title = prompt("please add movie title");
+        let rating = prompt("please add a rating from 1 - 10 with 10 being the highest");
+        let platform = prompt("please add what platform you watched this movie on");
+        if(isNaN(rating)) {
+            rating = 1;
+        }
+        const favorites = {
+            title: title,
+            rating: rating,
+            platform: platform
+        };
+        favoriteMovies.push(favorites);
+addAnother = confirm("Do you want to add another favorite?");
+
+    };
+    return favoriteMovies;
+};
+
+console.log(favoriteMovies)
+
+// addFavoritesButton.addEventListener('click',trackFavorites);
+
+// Display their favorites in an HTML table
+
+const displayFavorites = function(moviesArray) {
+    const tableBody = document.getElementById('favorites-table');
+    tableBody.innerHTML = '';
+    for (let i = 0; i < moviesArray.length; i++) {
+        const currentMovie = moviesArray[i];
+       
+        const newTableRow = document.createElement("tr");
+       
+        const titleCell = document.createElement("td");
+        titleCell.textContent=currentMovie.title;
+        newTableRow.append(titleCell);
+        
+        const ratingCell = document.createElement("td");
+        ratingCell.textContent = currentMovie.rating;
+        newTableRow.append(ratingCell);
+
+        const platformCell = document.createElement("td");
+        platformCell.textContent = currentMovie.platform;
+        newTableRow.append(platformCell);
+
+        tableBody.append(newTableRow);
+    }
+}
+
+const movieSubmissions = function () {
+    const favoriteMovies = trackFavorites();
+    
+    displayFavorites(favoriteMovies);
+}
+
+addFavoritesButton.addEventListener('click', movieSubmissions);
