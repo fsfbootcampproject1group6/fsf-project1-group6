@@ -69,67 +69,17 @@ form.addEventListener("submit", (e) => {
 });
 
 // AP working on how to set up a map in the website
+        // request the user's current location
+navigator.geolocation.getCurrentPosition(position => {
+    const {latitude, longitude} = position.coords;
+    // show a map centered at latitude/ Longitude,
+ Map.innerHTLM = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55947.89174300336!2d-81.2746844!3d28.786917550000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e7130dec2388f7%3A0xc3317e4e9680554c!2sSanford%2C%20FL!5e0!3m2!1sen!2sus!4v1716945010343!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+});
 
-//  avigator.geolocation.getCurrentPosition(function(position) {
-//     var pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//  }});
+// watching position
+// const watchId = navigator.geolocation.watchPosition(position => {
+//     const {latitude, longitude } = position.coords;
+//     // show a map center at latitude/longtude,
+//     console.log("watchId - "+watchId);
+// })
 
-
-//     map.setCenter(pos);
-//     //Put marker of the Geolocated user location
-//     var userMarker = new google.maps.Marker({
-//         map: map,
-//         position: pos
-//     });
-
-//     google.maps.event.addListener(userMarker, 'click', function() {
-//         infoWindow.setContent('Your location');
-//         infoWindow.open(map, this);
-//     });
-
-//     var requestMoviesTheater = {
-//         location: pos,
-//         radius: '10000',
-//         type: ['moviesTheater']
-//     };
-
-//     var service = new google.maps.places.PlacesService(map);
-//     service.nearbySearch(requestmoviesTheater, callback);
-
-//     function callback(results, status) {
-//         if (status == google.maps.places.PlacesServiceStatus.OK) {
-//             for (var i = 0; i < results.length; i++) {
-//                 var place = results[i];
-//                 createMarker(results[i]);
-//             }
-//         }
-//     }
-
-//     var type = place.types;
-//     var iconStyle;
-//     //loop to all the type of the place
-//     for (var i = 0; i < type.length; i++) {
-//         //put array of Place types in placeType variable
-//         var placeType = type[i];        
-//         //Check the placeType and set the icon according to the placeType value
-//         switch (placeType) {
-//             case "moviesTheater":
-//                 iconStyle = "/v2/showtimes/views/current-location/2-24-2017/38.91/-94.64"
-//                 // iconStyle = "http://maps.google.com/mapfiles/kml/shapes/pharmacy_rx.png"
-//                 break;
-//         }}
-
-//         //put marker of the places in the map
-//     var marker = new google.maps.Marker({
-//         map: map,
-//         icon: iconStyle,
-//         position: place.geometry.location
-//     });
-
-//     google.maps.event.addListener(marker, 'click', function() {
-//         infoWindow.setContent(place.name);
-//         infoWindow.open(map, this);
-    // });
-// this where i stop working for today 05/23/24
