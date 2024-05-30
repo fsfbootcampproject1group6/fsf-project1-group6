@@ -156,3 +156,39 @@ addAnother = confirm("Do you want to add another favorite?");
 });
 
 start()
+
+// Add Carousel API Hook
+async function getMovies(url) {
+    const resp = await fetch(url);
+    const respData = await resp.json();
+
+    console.log(respData);
+    showMovies(respData.results);
+    carouselRandomizer(respData.results); // hook Api to Carousel
+}
+
+// Add Carousel Randomizer
+const carouselRandomizer = async (movies) => {
+    const carouselContainer = document.getElementsByClassName("carousel-indicators")[0];
+    const carouselContent = document.getElementsByClassName("carousel-inner")[0];
+    
+    let randomMovies = movies.sort(() => Math.random() - 0.5).slice(0, 3);
+    console.log("random movies", randomMovies);
+
+    randomMovies.forEach((movie, i) => {
+        
+        const isCurrentSlide = i === 0;
+
+        const carouselItem = `
+        <div class="carousel-item ${isCurrentSlide? "active" : ""}">
+          <img src="${IMGPATH + movie.poster_path}" class="d-block mx-auto" style="height: 500px" alt="movie image">            
+        </div>
+      `;
+      carouselContent.innerHTML += carouselItem;
+
+      const carouselSlide = `
+        <button type="button" data-bs-target="#randomGen-carousel" data-bs-slide-to="${i}" class="${isCurrentSlide ? 'active' : ''}"></button>
+      `;
+      carouselContainer.innerHTML += carouselSlide;
+    });
+};
