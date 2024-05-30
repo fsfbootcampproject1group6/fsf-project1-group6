@@ -127,13 +127,48 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: auto;
+margin-right: auto;
+font-size: 32px;
+}
+
+table {
+margin-left: auto;
+margin-right: auto;
+font-size: 32px;
+color: white;
+}
+
+th {
+padding-right: 8rem;
+background-color: #008080;
+padding-left: 10px;
+}
+
+#top {
+    border-top: solid black;
+    border-left: solid black;
+    border-right: solid black;
 }
 
 #favorites-table {
-    color: #eee;
-    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem 1rem;
     letter-spacing: 0.5px;
+    border-bottom: solid black;
+    border-left: solid black;
+    border-right: solid black;
 }
+
+table tr:nth-child(odd) td{
+    background-color: #0da5dc;
+    padding-left: 10px;
+    font-size: 24px;
+}
+table tr:nth-child(even) td{
+    background-color: #26bfba;
+    padding-left: 10px;
+    font-size: 24px;
+}
+
