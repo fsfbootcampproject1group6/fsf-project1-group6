@@ -15,6 +15,24 @@ header {
     padding: 1rem;
 }
 
+nav ul {
+    min-width: none;
+    list-style-type: none;
+    padding: 0rem;
+    margin: 0rem;
+    overflow: hidden;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    color: #fff;
+    display: block;
+    padding: 1rem;
+}
+
 .search {
     background-color: transparent;
     border: 2px solid #26bfba;
@@ -118,8 +136,4 @@ main {
     justify-content: space-between;
     padding: 0.5rem 1rem 1rem;
     letter-spacing: 0.5px;
-}
-
-.map {
-    display: flex;git 
 }

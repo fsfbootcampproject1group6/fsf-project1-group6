@@ -1,8 +1,10 @@
 const APIURL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=37dc8fe3863669edc2545c1d7ad8f68f&page=1";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
-const SEARCHAPI ="https://api.themoviedb.org/3/movie?&api_key=37dc8fe3863669edc2545c1d7ad8f68f&query=";
+const SEARCHAPI ="https://api.themoviedb.org/3/search/movie?&api_key=37dc8fe3863669edc2545c1d7ad8f68f&query=";
 const addFavoritesButton = document.getElementById('favorites-button');
-const favoriteMovies = []
+var title = [];
+var rating = [];
+var platform = [];
 
 
 // initially get fav movies
@@ -83,3 +85,74 @@ navigator.geolocation.getCurrentPosition(position => {
 //     console.log("watchId - "+watchId);
 // })
 
+
+
+// addFavoritesButton.addEventListener('click',trackFavorites);
+
+// Display their favorites in an HTML table
+
+function displayFavorites() {
+    const tableBody = document.getElementById('favorites-table');
+    tableBody.innerHTML = '';
+    for (let i = 0; i < title.length; i++) {
+        const curtitle = title[i];
+        const currating = rating[i];
+        const curplatform = platform[i];
+
+        const newTableRow = document.createElement("tr");
+       
+        const titleCell = document.createElement("td");
+        titleCell.textContent=curtitle;
+        newTableRow.append(titleCell);
+        
+        const ratingCell = document.createElement("td");
+        ratingCell.textContent = currating;
+        newTableRow.append(ratingCell);
+
+        const platformCell = document.createElement("td");
+        platformCell.textContent = curplatform;
+        newTableRow.append(platformCell);
+
+        tableBody.append(newTableRow);
+    }
+}
+    function start() {
+        const storedtitle = JSON.parse(localStorage.getItem('title'));
+        const storedrating = JSON.parse(localStorage.getItem('rating'));
+        const storedplatform = JSON.parse(localStorage.getItem('platform'));
+
+        if (storedplatform !== null) {
+        title = storedtitle;
+        rating = storedrating;
+        platform = storedplatform;
+        }
+
+        displayFavorites();
+    }
+
+// Enable users to add their favorites to be tracked to a table
+function storefavorites() {
+    localStorage.setItem('title', JSON.stringify(title))
+    localStorage.setItem('rating', JSON.stringify(rating))
+    localStorage.setItem('platform', JSON.stringify(platform))
+}
+addFavoritesButton.addEventListener('click', function() {
+    let addAnother = true;
+    while (addAnother) {
+        let temptitle = prompt("please add movie title");
+        let temprating = prompt("please add a rating from 1 - 10 with 10 being the highest");
+        let tempplatform = prompt("please add what platform you watched this movie on");
+        if(isNaN(temprating)) {
+            temprating = 1;
+        }
+        title.push(temptitle);
+        rating.push(temprating);
+        platform.push(tempplatform);
+addAnother = confirm("Do you want to add another favorite?");
+
+    };
+    storefavorites();
+    displayFavorites();
+});
+
+start()
