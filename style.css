@@ -4,7 +4,7 @@
 #logo{
     height: 150px;
     margin-right: 36em;
-    margin-top: -56px;
+    margin-top: 0;
 }
 body {
     background-color: #26bfba;
@@ -157,3 +157,10 @@ h1 {
     margin-bottom: 1em;
     color: white;
 }
+
+@media screen and (max-width: 2000px) {
+    #logo {
+        float: none;
+        width: 50%;
+    }
+};
