@@ -192,6 +192,7 @@ function displayFavorites() {
         const storedrating = JSON.parse(localStorage.getItem('rating'));
         const storedplatform = JSON.parse(localStorage.getItem('platform'));
 
+
         if (storedplatform !== null) {
         title = storedtitle;
         rating = storedrating;
@@ -206,6 +207,7 @@ function storefavorites() {
     localStorage.setItem('title', JSON.stringify(title))
     localStorage.setItem('rating', JSON.stringify(rating))
     localStorage.setItem('platform', JSON.stringify(platform))
+
 }
 addFavoritesButton.addEventListener('click', function() {
     let addAnother = true;
@@ -236,7 +238,40 @@ async function getMovies(url) {
     console.log(respData);
     showMovies(respData.results);
     carouselRandomizer(respData.results); // hook Api to Carousel
+
 }
+addFavoritesButton.addEventListener('click', function() {
+    let addAnother = true;
+    while (addAnother) {
+        let temptitle = prompt("please add movie title");
+        let temprating = prompt("please add a rating from 1 - 10 with 10 being the highest");
+        let tempplatform = prompt("please add what platform you watched this movie on");
+        if(isNaN(temprating)) {
+            temprating = 1;
+        }
+        title.push(temptitle);
+        rating.push(temprating);
+        platform.push(tempplatform);
+addAnother = confirm("Do you want to add another favorite?");
+
+    };
+    storefavorites();
+    displayFavorites();
+});
+
+start()
+
+// Add Carousel API Hook
+async function getMovies(url) {
+    const resp = await fetch(url);
+    const respData = await resp.json();
+
+
+    console.log(respData);
+    showMovies(respData.results);
+    carouselRandomizer(respData.results); // hook Api to Carousel
+}
+
 
 // Add Carousel Randomizer
 const carouselRandomizer = async (movies) => {
@@ -262,4 +297,6 @@ const carouselRandomizer = async (movies) => {
       `;
       carouselContainer.innerHTML += carouselSlide;
     });
+
 };
+

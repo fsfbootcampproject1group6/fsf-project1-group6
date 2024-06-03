@@ -1,7 +1,11 @@
 * {
     box-sizing: border-box;
 }
-
+#logo{
+    height: 150px;
+    margin-right: 1000px;
+    margin-top: -56px;
+}
 body {
     background-color: #26bfba;
     font-family: "Poppins", sans-serif;
@@ -91,6 +95,34 @@ th {
     background-color: #008080;
     padding-left: 10px;
 }
+
+
+
+#favorites-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+margin-right: auto;
+font-size: 32px;
+margin-top: 2em;
+}
+
+table {
+margin-left: auto;
+margin-right: auto;
+font-size: 32px;
+color: white;
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+th {
+padding-right: 8rem;
+background-color: #008080;
+padding-left: 10px;
+}
+
 
 #top {
     border-top: solid black;
