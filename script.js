@@ -53,7 +53,7 @@ const options = {
         cardBody.appendChild(cardText);
         card.appendChild(cardImage);
         card.appendChild(cardBody);
-        document.getElementById("appendData").appendChild(card);
+        main.appendChild(card);
       });
     })
     .catch(err => console.error(err));
@@ -91,7 +91,7 @@ const options = {
   }
   
   //to launch modal on click of card
-  document.getElementById("appendData").addEventListener("click", (event) => {
+  document.getElementById("main").addEventListener("click", (event) => {
     const clickedCard = event.target.closest(".card-clickable");
     if (clickedCard) {
       const movieID = clickedCard.dataset.movieId;
@@ -106,8 +106,6 @@ const options = {
         });
     }
   });
-   
-
 //Modal Code End
 
 //initially get fav movies
@@ -124,41 +122,11 @@ async function getMovies(url) {
 
 function showMovies(movies) {
     // clear main
-    main.innerHTML = "";
 
     movies.forEach((movie) => {
-        const { poster_path, title, vote_average, overview } = movie;
-
         const movieEl = document.createElement("div");
-        movieEl.classList.add("movie");
-
-        // movieEl.innerHTML = `
-        //     <img
-        //         src="${IMGPATH + poster_path}"
-        //         alt="${title}"
-        //     />
-        //     <div class="movie-info">
-        //         <h3>${title}</h3>
-        //         <span class="${getClassByRate(vote_average)}">${vote_average}</span>
-        //     </div>
-        //     <div class="overview">
-        //         <h3>Overview:</h3>
-        //         ${overview}
-        //     </div>
-        // `;
-
         main.appendChild(movieEl);
     });
-}
-
-function getClassByRate(vote) {
-    if (vote >= 8) {
-        return "green";
-    } else if (vote >= 5) {
-        return "orange";
-    } else {
-        return "red";
-    }
 }
 
 form.addEventListener("submit", (e) => {
