@@ -1,7 +1,11 @@
 * {
     box-sizing: border-box;
 }
-
+#logo{
+    height: 150px;
+    margin-right: 1000px;
+    margin-top: -56px;
+}
 body {
     background-color: #26bfba;
     font-family: "Poppins", sans-serif;
@@ -21,6 +25,7 @@ nav ul {
     padding: 0rem;
     margin: 0rem;
     overflow: hidden;
+
 }
 
 li {
